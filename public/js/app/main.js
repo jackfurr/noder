@@ -5,10 +5,10 @@ requirejs.config({
         'templates': 'templates',
         'jquery': '../../js/vendor/jquery/jquery-1.11.2',
         'bootstrap': '../../js/vendor/bootstrap-3.3.2-dist/js/bootstrap',
-        'backbone': '../../js/vendor/backbone',
-        'underscore': '../../vendor/underscore',
-        'text': '../../js/vendor/text.min',
-        'mustache': '../../js/vendor/mustache',
+        'backbone': '../../js/vendor/backbone/backbone',
+        'underscore': '../../js/vendor/underscore/underscore',
+        'mustache': '../../js/vendor/mustache/mustache',
+        'text': '../../js/vendor/text/text'
     },
     shim: {
         'underscore': {
@@ -19,12 +19,12 @@ requirejs.config({
             exports: 'Bootstrap'
         },
         'backbone': {
-            deps: ['vendor/underscore', 'jquery'],
+            deps: ['underscore', 'jquery'],
             exports: 'Backbone'
         },
         'text': {
             deps: ['backbone']
-        }
+        },
     }
 });
 
