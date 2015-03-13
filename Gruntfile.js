@@ -6,7 +6,9 @@ module.exports = function(grunt) {
     jshint: {
       all: ['*.js',
       './models/**/*.js',
-      './routes/**/*.js']
+      './routes/**/*.js',
+      './public/**/*.js',
+      '!./public/js/vendor/**/*.js']
     },
     watch: {
       scripts: {
@@ -34,7 +36,7 @@ module.exports = function(grunt) {
     githooks: {
       all: {
         // Will run the jshint and test:unit tasks at every commit
-        'pre-commit': 'jshint:all phplint:all',
+        'pre-commit': 'jshint:all'
       }
     },
     nodemon: {
