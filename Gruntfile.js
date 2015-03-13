@@ -90,22 +90,47 @@ module.exports = function(grunt) {
             'hidden': ['node_modules']
           }
         }
+      },
+      clean: [
+        "./build"
+      ],
+      copy: {
+        main: {
+          files: [
+            // includes files within path and its sub-directories
+            {
+              expand: true,
+              src: [
+                './**',
+                '!./build',
+                '!./README.md',
+                '!./.gitignore',
+                '!./Gruntfile.js',
+                '!./config.js-sample',
+                '!./package.json'
+              ],
+              dest: 'build/'
+            }
+          ],
+        },
       }
 
   });
 
-  // Load the plugin that provides  the "uglify" task.
-  grunt.loadNpmTasks('grunt-contrib-uglify');
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
+
+  grunt.loadNpmTasks('grunt-contrib-clean');
+  grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-csslint');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-githooks');
-  grunt.loadNpmTasks('grunt-node-inspector');
   grunt.loadNpmTasks("grunt-nodemon");
-  //grunt.loadNpmTasks('grunt-uncss');
+  grunt.loadNpmTasks('grunt-node-inspector');
 
   // Default task(s).
   grunt.registerTask('default', ['jshint']);
+  grunt.registerTask('build', ['clean', 'copy']);
   grunt.registerTask('run', ['nodemon']);
   grunt.registerTask('debug', ['node-inspector']);
 
