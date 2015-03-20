@@ -11,6 +11,7 @@ define([
             this.options = options;
         },
         render: function(){
+            Backbone.Events.trigger('nav_bar_view:update', null);
             this.$el.html(Mustache.render(DefaultViewTemplate, {}));
             return this;
         }

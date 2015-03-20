@@ -9,6 +9,7 @@ var Memcached = require('memcached');
 var config = require('./config');
 var routes = require('./routes/index');
 var user = require('./routes/user');
+var auth = require('./routes/auth');
 
 var session = require('express-session');
 var SessionStore = require('express-mysql-session');
@@ -52,6 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
 app.use('/user', user);
+app.use('/auth', auth);
 
 process.on('uncaughtException', function (err) {
   console.error('uncaughtException:', err.message);

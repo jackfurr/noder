@@ -8,18 +8,17 @@ router.post('/', function (req, res) {
     //    res.setHeader('Content-Type', 'application/json');
     //    res.end(JSON.stringify(data, null, " "));
     //});
-    res.sendStatus(200);
+    user.authenticate(req.params, req, function(err) {
+        console.log('user.authenticate');
+        res.sendStatus(200);
+    })
 });
 
 router.get('/logout', function (req, res) {
-    // user.authenticate(req.body, req, function(err) {
-    //     if (err) {
-    //         res.sendStatus(500);
-    //     }
-    //     else {
-    //         res.sendStatus(200);
-    //     }
-    // });
+    req.session.destroy(function destroySession(err) {
+        console.log('req.session.destroy');
+    });
+
     res.sendStatus(200);
 });
 
