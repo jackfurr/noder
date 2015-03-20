@@ -7,5 +7,6 @@ module.exports = {
         database: 'YOUR_DATABASE_NAME'
     },
     mc: 'localhost:11211',
-    pswd_salt: 'THIS_SHOULD_BE_A_LONG_AND_RANDOM_STRING_FOR_A_SALT'
+    pswd_salt: 'THIS_SHOULD_BE_A_LONG_AND_RANDOM_STRING_FOR_A_SALT',
+    session_secret: 'THIS_SHOULD_BE_A_LONG_AND_RANDOM_STRING_FOR_A_SESSION_SECRET'
 };

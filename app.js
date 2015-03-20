@@ -10,12 +10,25 @@ var config = require('./config');
 var routes = require('./routes/index');
 var user = require('./routes/user');
 
+var session = require('express-session');
+var SessionStore = require('express-mysql-session');
+var sessionStore = new SessionStore(config.db);
+
 var app = express();
+
+app.use(session({
+  key: 'session_cookie_name',
+  secret: config.session_secret,
+  store: sessionStore,
+  resave: true,
+  saveUninitialized: true
+}));
 
 memcached = new Memcached(config.mc);
 
 var connection = require('express-myconnection');
 var mysql = require('mysql');
+app.use(connection(mysql, config.db, 'request'));
 
 // The `consolidate` adapter module
 var cons = require('consolidate');
@@ -36,7 +49,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(connection(mysql, config.db, 'request'));
 
 app.use('/', routes);
 app.use('/user', user);
